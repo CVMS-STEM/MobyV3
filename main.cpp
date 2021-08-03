@@ -39,17 +39,25 @@ void t(){
 }
 void screen(){
   Controller1.Screen.clearScreen();
-  Controller1.Screen.print("gyro: ");
-  Controller1.Screen.print(i.roll());
-  Controller1.Screen.newLine();
-  Controller1.Screen.print("turbo: ");
-  Controller1.Screen.print(turbo);
-  Controller1.Screen.newLine();
-  Controller1.Screen.print("fork: ");
-  Controller1.Screen.print(rot.position(rotationUnits::deg));
-  
-
-  Controller1.Screen.setCursor(1, 1);
+  if (i.roll() != gyr){
+    Controller1.Screen.clearLine(1);
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print("gyro: ");
+    Controller1.Screen.print(i.roll());
+    gyr = i.roll();
+  } if (tur != turbo){
+    Controller1.Screen.clearLine(2);
+    Controller1.Screen.setCursor(2, 1);
+    Controller1.Screen.print("turbo: ");
+    Controller1.Screen.print(turbo);
+    tur = turbo; 
+  } if (rot.position(rotationUnits::deg) != fk){
+    Controller1.Screen.clearLine(3);
+    Controller1.Screen.setCursor(3, 1);
+    Controller1.Screen.print("fork: ");
+    Controller1.Screen.print(rot.position(rotationUnits::deg));
+    fk = rot.position(rotationUnits::deg);
+  }
 }
 //auto-balance
 void balance(){
