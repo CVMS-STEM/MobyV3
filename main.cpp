@@ -79,11 +79,9 @@ void balance(){
       }
       wait(20, msec);
     }
-    if (balancing){
-      r.stop(brakeType::hold);
-      l.stop(brakeType::hold);
-      Controller1.rumble(".");
-    } 
+    r.stop(brakeType::hold);
+    l.stop(brakeType::hold);
+    Controller1.rumble(".");
   }
 }
 // actually driving the robot
